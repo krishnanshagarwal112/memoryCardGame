@@ -5,14 +5,36 @@ let src = ""
 pointsCounter = 0    // score
 turnsCounter = 0    // number of cards flipped
 let imgArr = []
-let win = true;
+
+let count = 0
+
+    
+// }
+let randomNumber = 0
+for(let j = 0; j < 2; j++){
+    for(let i = 0; i< srcList.length; i++){
+        // take any random number of total images
+        randomNumber =[Math.floor(Math.random() * Images.length)]
+        
+        if(Images[randomNumber].dataset.src == ""){
+            Images[randomNumber].dataset.src = srcList[i]
+        }
+        else{
+            i--;
+        } 
+    }
+}
+
 
 for(let i = 0; i< Images.length; i++){
-    
-    Images[i].dataset.src = randomeSource()
-    
-
+    if(Images[i].dataset.src != ""){
+        console.log(i,Images[i].dataset.src);
+    }
+    else{
+        console.log("none")
+    }
 }
+
 
 
 for(let i = 0; i< Images.length; i++){
@@ -26,12 +48,12 @@ for(let i = 0; i< Images.length; i++){
             imgArr.push(i,Images[i].getAttribute("src")) 
         }    
         if(imgArr.length === 4){
-            pointsCounter++
-            points.textContent = pointsCounter
+            
             console.log("workinhg...")
             if(imgArr[1] === imgArr[3]){
                 turnsCounter = 0
                 console.log("right guess")
+                count++;
                 // cards will always be open
             }
             else{
@@ -43,22 +65,20 @@ for(let i = 0; i< Images.length; i++){
                     Images[imgArr[2]].dataset.bool = "false"
 
                     turnsCounter = 0
-                }, 1000);
+                }, 500);
                 
             }
            setTimeout(() => {
             imgArr = []
-           }, 1100);
+            pointsCounter++
+            points.textContent = pointsCounter
+           }, 600);
+        }
+        if(count == 4){
+            alert("YOU WONS")
         }
     })
-    
-}
-
-
-
-function randomeSource(){
-    src = srcList[Math.floor(Math.random() * srcList.length)]
-    return src
+   
     
 }
 
