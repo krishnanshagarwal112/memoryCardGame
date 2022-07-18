@@ -1,12 +1,12 @@
 let points = document.getElementById("points")
 let Images = document.getElementsByTagName("img")
-let srcList = ["images/ronaldo.jpeg","images/messi.jpeg","images/neymar.jpeg","images/maradona.jpeg"]
+let srcList = ["images/ronaldo.jpeg","images/messi.jpeg","images/neymar.jpeg","images/maradona.jpeg","images/kante.jpeg","images/kdb.jpeg"]
 let src = ""
 pointsCounter = 0    // score
 turnsCounter = 0    // number of cards flipped
 let imgArr = []
 
-let count = 0
+let count = 0   // right guess counter
 
     
 // }
@@ -25,23 +25,11 @@ for(let j = 0; j < 2; j++){
     }
 }
 
-
-for(let i = 0; i< Images.length; i++){
-    if(Images[i].dataset.src != ""){
-        console.log(i,Images[i].dataset.src);
-    }
-    else{
-        console.log("none")
-    }
-}
-
-
-
 for(let i = 0; i< Images.length; i++){
     
     Images[i].addEventListener("click",function(){
         if(turnsCounter < 2 && Images[i].dataset.bool == "false"){
-            console.log(Images[i],"is clicked")
+            
             Images[i].setAttribute("src", Images[i].dataset.src)
             Images[i].dataset.bool = "true"
             turnsCounter++;
@@ -49,34 +37,36 @@ for(let i = 0; i< Images.length; i++){
         }    
         if(imgArr.length === 4){
             
-            console.log("workinhg...")
-            if(imgArr[1] === imgArr[3]){
-                turnsCounter = 0
-                console.log("right guess")
+           
+            if(imgArr[1] === imgArr[3]){        // if you have guessed right
+                
                 count++;
                 // cards will always be open
             }
             else{
                 setTimeout(() => {
-                    console.log("wrong guess")
+                    
                     Images[imgArr[0]].setAttribute("src","images/default.jpg")
                     Images[imgArr[2]].setAttribute("src","images/default.jpg")
                     Images[imgArr[0]].dataset.bool = "false"
                     Images[imgArr[2]].dataset.bool = "false"
-
-                    turnsCounter = 0
-                }, 500);
-                
+                }, 500);  
             }
+
            setTimeout(() => {
+
+            turnsCounter = 0
             imgArr = []
             pointsCounter++
             points.textContent = pointsCounter
            }, 600);
         }
-        if(count == 4){
-            alert("YOU WONS")
-        }
+        setTimeout(() => {
+            if(count == 6){
+                alert("YOU WONS")
+            }
+        }, 700);
+        
     })
    
     
