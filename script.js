@@ -50,7 +50,7 @@ for(let i = 0; i< Images.length; i++){
                     Images[imgArr[2]].setAttribute("src","images/default.jpg")
                     Images[imgArr[0]].dataset.bool = "false"
                     Images[imgArr[2]].dataset.bool = "false"
-                }, 500);  
+                }, 1000);  
             }
 
            setTimeout(() => {
@@ -59,13 +59,13 @@ for(let i = 0; i< Images.length; i++){
             imgArr = []
             pointsCounter++
             points.textContent = pointsCounter
-           }, 600);
+           }, 1300);
         }
         setTimeout(() => {
             if(count == 6){
                 alert("YOU WONS")
             }
-        }, 700);
+        }, 1500);
         
     })
    
